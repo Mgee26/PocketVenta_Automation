@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataFileEntity>
+   <description></description>
+   <name>pocketVentaDB</name>
+   <tag></tag>
+   <containsHeaders>true</containsHeaders>
+   <csvSeperator></csvSeperator>
+   <dataFileGUID>137a23b4-e207-4d3e-bd73-1c4bafab599b</dataFileGUID>
+   <dataSourceUrl></dataSourceUrl>
+   <driver>DBData</driver>
+   <isInternalPath>false</isInternalPath>
+   <password></password>
+   <query>SELECT	long_name &quot;Store Name&quot;, NULL &quot;Serial Number&quot;,
+	rpt.transaction_date &quot;Date&quot;, rpt.beginning_receipt &quot;Beginning OR&quot;,
+	rpt.ending_receipt &quot;Ending OR&quot;, rpt.total_receipt &quot;Total OR&quot;,
+	rpt.beginning_sales &quot;Beginning Accumulated Sales&quot;, rpt.ending_sales &quot;Ending Accumulated Sales&quot;,
+	rpt.ending_sales - rpt.ending_sales &quot;Gross Sales&quot;, rpt.manual_sales &quot;Sales with Manual OR&quot;,
+	rpt.dev_gross_sales &quot;Sales from POS&quot;, rpt.z_counter &quot;Z Counter&quot;,
+	rpt.taxable_sales &quot;Taxable Sales&quot;, rpt.tax &quot;Tax&quot;, rpt.tax_exempt_sales &quot;Tax Exempt Sales&quot;,
+	rpt.zero_rated_sales &quot;Zero-rated Sales&quot;, rpt.regular_discounts &quot;Regular Discount&quot;,
+	rpt.senior_discounts + rpt.pwd_discounts &quot;Special Discount (SC/PWD)&quot;,
+	rpt.return_sales &quot;Returns&quot;, rpt.voided_sales &quot;Voided Sales&quot;,
+	rpt.total_deductions &quot;Total Deductions&quot;, rpt.tax_special_discounts &quot;Tax on Special Discounts&quot;,
+	rpt.tax_returns &quot;Tax on Returns&quot;, rpt.other_tax &quot;Other Tax&quot;,
+	rpt.tax_special_discounts + rpt.other_tax &quot;Total Tax Adjustments&quot;,
+	rpt.tax_payable &quot;Tax Payable&quot;, rpt.net_sales &quot;Net Sales&quot;, rpt.other_income &quot;Other Income&quot;,
+	rpt.sales_overrun &quot;Sales Overrun/Overflow&quot;,
+	rpt.net_sales + rpt.other_income + rpt.sales_overrun &quot;Total Net Sales&quot;,
+	rpt.reset_counter &quot;Reset Counter&quot;, NULL &quot;Remarks&quot;
+FROM monthly_sales_header rpt
+JOIN store ON rpt.store_id = store.id AND store.long_name = 'Broadway Centrum'
+WHERE rpt.transaction_date BETWEEN '2019-02-01' AND '2019-02-28'</query>
+   <secureUserAccount>false</secureUserAccount>
+   <sheetName></sheetName>
+   <user></user>
+   <usingGlobalDBSetting>true</usingGlobalDBSetting>
+</DataFileEntity>

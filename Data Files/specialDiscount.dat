@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataFileEntity>
+   <description></description>
+   <name>specialDiscount</name>
+   <tag></tag>
+   <containsHeaders>true</containsHeaders>
+   <csvSeperator></csvSeperator>
+   <dataFileGUID>137a23b4-e207-4d3e-bd73-1c4bafab599b</dataFileGUID>
+   <dataSourceUrl></dataSourceUrl>
+   <driver>DBData</driver>
+   <isInternalPath>false</isInternalPath>
+   <password></password>
+   <query>SELECT  a.store_name, CAST(a.transaction_date AS DATE) txn_date, CAST(a.transaction_date AS TIME) txn_time,
+    b.product_name, CASE WHEN b.deduction_id = 1 THEN 'SC' WHEN b.deduction_id = 2 THEN 'PWD' ELSE 'ERROR' END dc_type,
+    REPLACE(JSON_EXTRACT(b.deduction_json_remarks, '$.DISCOUNT_DETAIL_NAME_PROTOCOL'), '\&quot;', '') `name`,
+    REPLACE(JSON_EXTRACT(b.deduction_json_remarks, '$.DISCOUNT_DETAIL_ID_NUMBER'), '\&quot;', '') id,
+    -- REPLACE(JSON_EXTRACT(b.deduction_json_remarks, '$.DISCOUNT_DETAIL_PHOTO_PROTOCOL'), '\&quot;', '') url,
+    b.selling_price + b.deduction gross, b.deduction discount, b.selling_price net
+FROM sales_transaction_header a
+JOIN sales_transaction_detail b ON a.id = b.header_id AND b.deduction_type_id = 1
+WHERE CAST(a.transaction_date AS DATE) BETWEEN '2019-02-01' AND '2019-02-28' AND store_name = 'Broadway Centrum'</query>
+   <secureUserAccount>false</secureUserAccount>
+   <sheetName></sheetName>
+   <user></user>
+   <usingGlobalDBSetting>true</usingGlobalDBSetting>
+</DataFileEntity>
